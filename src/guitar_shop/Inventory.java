@@ -1,12 +1,13 @@
 package guitar_shop;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Inventory {
 
-    private List guitars;
+    private List<Guitar> guitars;
 
     public Inventory() {
         guitars = new LinkedList();
@@ -28,15 +29,17 @@ public class Inventory {
         return null;
     }
 
-    public Guitar search(Guitar searchGuitar) {
-        for (Object guitar1 : guitars) {
-            Guitar guitar = (Guitar) guitar1;
+    public List<Guitar> search(Guitar searchGuitar) {
+
+        List<Guitar> matchingGuitars = new ArrayList<Guitar>();
+
+        for (Guitar guitar : guitars) {
 
             if (searchGuitar.getBuilder() != guitar.getBuilder())
                 continue;
 
             String model = searchGuitar.getModel().toLowerCase();
-            if ((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase())))
+            if ((!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase())))
                 continue;
 
             if (searchGuitar.getType() != guitar.getType())
@@ -48,9 +51,10 @@ public class Inventory {
             if (searchGuitar.getBackWood() != guitar.getBackWood())
                 continue;
 
-            return guitar;
+            matchingGuitars.add(guitar);
+
         }
 
-        return null;
+        return matchingGuitars;
     }
 }
