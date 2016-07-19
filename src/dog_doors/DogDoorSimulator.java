@@ -18,7 +18,6 @@ public class DogDoorSimulator {
         try {
             Thread.currentThread().sleep(10000);
         } catch (InterruptedException ie) {
-
         }
 
         System.out.println("\nBruce's all done...");
